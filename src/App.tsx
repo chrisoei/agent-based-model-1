@@ -1,19 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
-import { initWorld, timestep, displayWorld, World } from "./world";
-import { Agent } from "./agent";
+import { initWorld, displayWorld, timestep } from "./world";
 
-function App() {
-  var world = initWorld();
+const App = () => {
+    const [world, setWorld] = useState(initWorld());
+    return (
+        <div className="App">
+            <header className="App-header">
+                {displayWorld(world)}
+                <button onClick={() => setWorld(timestep(world))}>Timestep</button>
+            </header>
+        </div>
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        {displayWorld(world)}
-      </header>
-    </div>
-  );
+    );
 }
 
 export default App;
