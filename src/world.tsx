@@ -27,7 +27,7 @@ export const timestep = (world: World): World => {
     for (var i = 0; i < world.n; i++) {
         newAgents[i] = {
             cash: world.agents[i].cash - 1
-        } 
+        }
     }
     let newWorld = {
         t: world.t + 1,
@@ -47,12 +47,19 @@ const totalCash = (world: World): number => {
     return sum;
 }
 
+const displayAgents = (world: World): JSX.Element[] => {
+    return (world.agents.map((a) =>
+        <li>{a.cash}</li>
+    ));
+}
+
 export const displayWorld = (world: World): JSX.Element => {
     return (
         <ul>
             <li>Total # of agents: {world.n.toString()}</li>
             <li>Current time: {world.t}</li>
             <li>Total cash: {totalCash(world).toFixed(2)}</li>
+            <li>Agents: <ul>{displayAgents(world)}</ul></li>
         </ul>
     );
 }
